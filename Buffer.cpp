@@ -39,34 +39,85 @@ bool Buffer::add_entry(con_strr first_name, con_strr last_name, const int& birth
 	return true;
 }
 
-void Buffer::search(std::vector<Player*>& results, con_strr first_name, con_strr last_name, const int& birth_year, const int& category, const bool& status) {
+bool Buffer::search(std::vector<Player*>& results, con_strr first_name, con_strr last_name, con_strr keyword, const int& birth_year, const int& category, const bool& status) {
 	results.clear();
 	for (pair<const string, Player>& x : players) {
 		bool match = true; //the entry is assumed to match then checked if it doesn't match
 		if ((first_name != "") && (x.second.nameFirst() != first_name)) match = false;
 		if ((last_name != "") && (x.second.nameLast() != last_name)) match = false;
+		if ((keyword != "") && (x.first.find(keyword) == string::npos)) match = false;
 		if ((birth_year != 0) && (x.second.year() != birth_year)) match = false;
 		if ((category != 0) && (x.second.category() != category)) match = false;
 		if ((x.second.registery() != status)) match = false;
 		if (match) results.push_back(&(x.second));
 	}
+	if (results.size() > 0) return true;
+	return false;
 }
 
-void Buffer::search(std::vector<Player*>& results, con_strr first_name, con_strr last_name, const int& birth_year, const int& category) {
+bool Buffer::search(std::vector<Player*>& results, con_strr first_name, con_strr last_name, con_strr keyword, const int& birth_year, const int& category) {
 	results.clear();
 	for (pair<const string, Player>& x : players) {
 		bool match = true; //the entry is assumed to match then checked if it doesn't match
 		if ((first_name != "") && (x.second.nameFirst() != first_name)) match = false;
 		if ((last_name != "") && (x.second.nameLast() != last_name)) match = false;
+		if ((keyword != "") && (x.first.find(keyword) == string::npos)) match = false;
 		if ((birth_year != 0) && (x.second.year() != birth_year)) match = false;
 		if ((category != 0) && (x.second.category() != category)) match = false;
 		if (match) results.push_back(&(x.second));
 	}
+	if (results.size() > 0) return true;
+	return false;
 }
 
 void Buffer::test_cout() {
 	for (pair<const string, Player>& x : players)
 	{
 		cout << "entry:" << x.first << endl << x.second << endl;
+	}
+}
+
+void Buffer::statistics(int* stats) {
+	for (const pair<const string, Player>& x : players)
+	{
+		stats[0]++;
+		switch (x.second.category()) {
+		case 6:
+			if (x.second.registery()) {
+				stats[1]++;
+				stats[2]++;
+			}
+			break;
+		case 8:
+			if (x.second.registery()) {
+				stats[1]++;
+				stats[3]++;
+			}
+			break;
+		case 10:
+			if (x.second.registery()) {
+				stats[1]++;
+				stats[4]++;
+			}
+			break;
+		case 12:
+			if (x.second.registery()) {
+				stats[1]++;
+				stats[5]++;
+			}
+			break;
+		case 14:
+			if (x.second.registery()) {
+				stats[1]++;
+				stats[6]++;
+			}
+			break;
+		case 17:
+			if (x.second.registery()) {
+				stats[1]++;
+				stats[7]++;
+			}
+			break;
+		}
 	}
 }
