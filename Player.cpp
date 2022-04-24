@@ -48,4 +48,13 @@ istream& operator>>(istream& in, Player& p) {
 	return in;
 }
 
+ostream& operator<<(ostream& out, Player& p) {
+	out << p.nameFirst_;
+	out << p.nameLast_;
+	out << p.year_;
+	out << p.category();
+	out << p.register_;
 
+
+	return out;
+}

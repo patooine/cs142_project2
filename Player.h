@@ -5,11 +5,13 @@
 #include<iostream>
 #include<string>
 class Player {
-	Player(std::string firstName, std::string lastName, int year, int catagory, bool registry) : nameFirst_(firstName), nameLast_(lastName), year_(year), register_(registry) { set_category(catagory); }
-	
-	friend std::istream& operator >> (std::istream& in, Player& p);
-	//friend enum category_ parse_category(const int& new_catagory);
 public:
+	Player(std::string firstName, std::string lastName, int year, int catagory, bool registry) : nameFirst_(firstName), nameLast_(lastName), year_(year), register_(registry) { set_category(catagory); }
+	Player() :nameFirst_(""), nameLast_(""), year_(-1), register_(false) { set_category(6); };
+	friend std::istream& operator >> (std::istream& in, Player& p);
+	friend std::ostream& operator<<(std::ostream& out, Player& p);
+	//friend enum category_ parse_category(const int& new_catagory);
+
 	inline int year() { return year_; }
 	inline std::string nameFirst() { return nameFirst_; }
 	inline std::string nameLast() { return nameLast_; }
