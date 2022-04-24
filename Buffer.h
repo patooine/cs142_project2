@@ -14,12 +14,13 @@ public:
 	void load_data(con_strr file_name);
 	void print_data(con_strr file_name);
 	bool add_entry(con_strr first_name, con_strr last_name, const int& birth_year, const bool& status);
+	void test_cout();
 
 	void search(std::vector<Player*>& results, con_strr first_name, con_strr last_name, const int& birth_year, const int& category, const bool& status);
 	void search(std::vector<Player*>& results, con_strr first_name, con_strr last_name, const int& birth_year, const int& category);
 
 	//setters & getters
-	int current_year() { return current_year_; }
+	const int current_year() const { return current_year_; }
 	void current_year_set(int year) { current_year_ = year; }
 
 private:

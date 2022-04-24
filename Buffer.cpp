@@ -13,20 +13,20 @@ void Buffer::load_data(con_strr file_name) {
 	ifstream in(file_name);
 	while (in >> entry) {
 		in.ignore(); //ignores the following \n
-		players[entry.first_name() + " " + entry.last_name()] = entry;
+		players[entry.nameFirst() + " " + entry.nameLast()] = entry;
 	};
 }
 
 void Buffer::print_data(con_strr file_name) {
 	ofstream out(file_name);
 	for (std::pair<std::string, Player> x : players) {
-		out << x.second << endl;
+		out << x.second;
 	}
 }
 
 bool Buffer::add_entry(con_strr first_name, con_strr last_name, const int& birth_year, const bool& status) {
 	int category;
-	int age = current_year_ - birth_year;
+	int age = birth_year - current_year_;
 	if (age > 16) return false;
 	else if (age > 13) category = 17;
 	else if (age > 11) category = 14;
@@ -40,26 +40,33 @@ bool Buffer::add_entry(con_strr first_name, con_strr last_name, const int& birth
 }
 
 void Buffer::search(std::vector<Player*>& results, con_strr first_name, con_strr last_name, const int& birth_year, const int& category, const bool& status) {
+	results.clear();
 	for (pair<const string, Player>& x : players) {
-		results.clear();
-		bool match = true; //the entry is assumed to match then checked if it doesn't
-		if ((first_name != "") && (x.second.first_name() != first_name)) match = false;
-		if ((last_name != "") && (x.second.last_name() != last_name)) match = false;
-		if ((birth_year != 0) && (x.second.birth_year() != birth_year)) match = false;
+		bool match = true; //the entry is assumed to match then checked if it doesn't match
+		if ((first_name != "") && (x.second.nameFirst() != first_name)) match = false;
+		if ((last_name != "") && (x.second.nameLast() != last_name)) match = false;
+		if ((birth_year != 0) && (x.second.year() != birth_year)) match = false;
 		if ((category != 0) && (x.second.category() != category)) match = false;
-		if ((x.second.status() != status)) match = false;
+		if ((x.second.registery() != status)) match = false;
 		if (match) results.push_back(&(x.second));
 	}
 }
 
 void Buffer::search(std::vector<Player*>& results, con_strr first_name, con_strr last_name, const int& birth_year, const int& category) {
+	results.clear();
 	for (pair<const string, Player>& x : players) {
-		results.clear();
-		bool match = true; //the entry is assumed to match then checked if it doesn't
-		if ((first_name != "") && (x.second.first_name() != first_name)) match = false;
-		if ((last_name != "") && (x.second.last_name() != last_name)) match = false;
-		if ((birth_year != 0) && (x.second.birth_year() != birth_year)) match = false;
+		bool match = true; //the entry is assumed to match then checked if it doesn't match
+		if ((first_name != "") && (x.second.nameFirst() != first_name)) match = false;
+		if ((last_name != "") && (x.second.nameLast() != last_name)) match = false;
+		if ((birth_year != 0) && (x.second.year() != birth_year)) match = false;
 		if ((category != 0) && (x.second.category() != category)) match = false;
 		if (match) results.push_back(&(x.second));
+	}
+}
+
+void Buffer::test_cout() {
+	for (pair<const string, Player>& x : players)
+	{
+		cout << "entry:" << x.first << endl << x.second << endl;
 	}
 }
