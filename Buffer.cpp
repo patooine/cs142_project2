@@ -9,7 +9,7 @@ using namespace std;
 
 void Buffer::load_data(con_strr file_name) {
 	Player entry;
-    players.empty();
+	players.clear();
 	ifstream in(file_name);
 	while (in >> entry) {
 		in.ignore(); //ignores the following \n
@@ -71,6 +71,7 @@ bool Buffer::search(std::vector<Player*>& results, con_strr first_name, con_strr
 }
 
 void Buffer::test_cout() {
+	cout << "Map: \n";
 	for (pair<const string, Player>& x : players)
 	{
 		cout << "entry:" << x.first << endl << x.second << endl;
@@ -120,4 +121,9 @@ void Buffer::statistics(int* stats) {
 			break;
 		}
 	}
+}
+
+void Buffer::new_session(int new_year) {
+	current_year_ = new_year;
+	players.clear();
 }

@@ -41,5 +41,8 @@ int main() {
 	cout << "paid for u14: " << stats[6] << endl;
 	cout << "paid for u17: " << stats[7] << endl;
 
+	buffer.new_session(2000);
+	buffer.test_cout();
+
 	return 0;
  }

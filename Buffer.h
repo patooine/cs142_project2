@@ -20,6 +20,8 @@ public:
 	bool search(std::vector<Player*>& results, con_strr first_name, con_strr last_name, con_strr keyword, const int& birth_year, const int& category, const bool& status);
 	bool search(std::vector<Player*>& results, con_strr first_name, con_strr last_name, con_strr keyword, const int& birth_year, const int& category);
 
+	void new_session(int new_year);
+
 	//setters & getters
 	const int current_year() const { return current_year_; }
 	void current_year_set(int year) { current_year_ = year; }
