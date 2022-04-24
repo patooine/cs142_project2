@@ -20,6 +20,8 @@ when provided with the first and last name, birth year and status it adds a play
 outputs all of the map to cout, for testing purposes only!
 #### statistics(int* stats)
 takes an array of int, length 8. inputs [0] as the total number of players, [1] as the total paid for, [2] as those in u6 paid for, [3] as those in u8 paid for, and so on
+#### new_session(int new_year)
+sets the current year to the new year and clears the map
 
 ### Data:
 #### map<string, Player> players;
