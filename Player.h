@@ -20,7 +20,7 @@ public:
 	inline void set_year(const int& new_year) { if (new_year != NULL) { year_ = new_year; } }
 	inline void set_nameFirst(const std::string& new_name) { if (new_name != "") { nameFirst_ = new_name; } }
 	inline void set_nameLast(const std::string& new_name) { if (new_name != "") { nameLast_ = new_name; } }
-	inline void set_register(const bool& new_registery) { register_ = new_registery;  }
+	inline void set_register(const bool& new_registery) { register_ = new_registery; }
 	void set_category(const int& new_catagory);
 
 private:
