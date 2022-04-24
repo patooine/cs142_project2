@@ -4,7 +4,7 @@
 
 ### Buffer:
 ### Functions:
-buffer.load_data(string file_name)
+buffer.load_data(string file_name) \n
 When given a file name it takes in player entries and sends them to the map. (Needs player to have the >> operator, .first_name() getter, .last_name() getter)
 buffer.print_data(string file_name)
 When given a file name it prints out player entries to the file. (Needs player to have the << operator)
