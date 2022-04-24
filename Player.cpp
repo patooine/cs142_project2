@@ -25,7 +25,7 @@ void Player::set_category(const int& new_category) {
 }
 
 
-int Player::category() {
+const int Player::category() const {
 	switch (u) {
 	case u6:
 		return 6;
