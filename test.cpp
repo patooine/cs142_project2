@@ -10,8 +10,9 @@
 using namespace std;
 int main() {
 	Buffer buffer;
-	buffer.current_year_set(2000);
 	buffer.load_data("save_data.txt");
+	cout << buffer.current_year() << endl;
+	buffer.current_year_set(2000);
 	//buffer.test_cout();
 	buffer.add_entry("bob", "jefferson", 2010, false);
 	//buffer.print_data("save_data.txt");

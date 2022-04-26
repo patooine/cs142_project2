@@ -11,6 +11,8 @@ void Buffer::load_data(con_strr file_name) {
 	Player entry;
 	players.clear();
 	ifstream in(file_name);
+	in >> current_year_;
+	in.ignore();
 	while (in >> entry) {
 		in.ignore(); //ignores the following \n
 		players[entry.nameFirst() + " " + entry.nameLast()] = entry;
@@ -19,6 +21,7 @@ void Buffer::load_data(con_strr file_name) {
 
 void Buffer::print_data(con_strr file_name) {
 	ofstream out(file_name);
+	out << current_year_ << endl;
 	for (std::pair<std::string, Player> x : players) {
 		out << x.second;
 	}
