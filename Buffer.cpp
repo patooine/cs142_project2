@@ -19,11 +19,32 @@ void Buffer::load_data(con_strr file_name) {
 	};
 }
 
-void Buffer::print_data(con_strr file_name) {
+void Buffer::save_data(con_strr file_name) {
 	ofstream out(file_name);
 	out << current_year_ << endl;
 	for (std::pair<std::string, Player> x : players) {
 		out << x.second;
+	}
+}
+
+void Buffer::print_data(con_strr file_name, std::vector<Player*>& results) {
+	ofstream out(file_name);
+	out << "Current Year: " << current_year_ << endl;
+	out << "Search Results: " << endl;
+	for (const auto x : results) {
+		out << *x;
+	}
+}
+
+void Buffer::print_data(con_strr file_name) {
+	ofstream out(file_name);
+	out << "Current Year: " << current_year_ << endl;
+	for (int i = 6; i < 18; i += 2) {
+		if (i == 16) i++;
+		out << "U" << i << ":" << endl;
+		for (std::pair<std::string, Player> x : players) {
+			if (x.second.category() == i) out << x.second;
+		}
 	}
 }
 

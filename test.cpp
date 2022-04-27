@@ -15,7 +15,8 @@ int main() {
 	buffer.current_year_set(2000);
 	//buffer.test_cout();
 	buffer.add_entry("bob", "jefferson", 2010, false);
-	//buffer.print_data("save_data.txt");
+	//buffer.save_data("save_data.txt");
+	buffer.print_data("output.txt");
 
 	vector<Player*> results;
 
@@ -31,6 +32,7 @@ int main() {
 	{
 		cout << *x;
 	}
+	buffer.print_data("output_search.txt", results);
 	int stats[8]{};
 	buffer.statistics(stats);
 	cout << "total: " << stats[0] << endl;
