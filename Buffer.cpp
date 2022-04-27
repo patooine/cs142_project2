@@ -27,18 +27,19 @@ void Buffer::save_data(con_strr file_name) {
 	}
 }
 
-void Buffer::print_data(con_strr file_name, std::vector<Player*>& results) {
+bool Buffer::print_data(con_strr file_name, std::vector<Player*>& results) {
 	ofstream out(file_name);
-	out << "Current Year: " << current_year_ << endl;
+	if (out << "Current Year: " << current_year_ << endl) return false;
 	out << "Search Results: " << endl;
 	for (const auto x : results) {
 		out << *x;
 	}
+	return true;
 }
 
-void Buffer::print_data(con_strr file_name) {
+bool Buffer::print_data(con_strr file_name) {
 	ofstream out(file_name);
-	out << "Current Year: " << current_year_ << endl;
+	if (out << "Current Year: " << current_year_ << endl) return false;
 	for (int i = 6; i < 18; i += 2) {
 		if (i == 16) i++;
 		out << "U" << i << ":" << endl;
@@ -46,6 +47,7 @@ void Buffer::print_data(con_strr file_name) {
 			if (x.second.category() == i) out << x.second;
 		}
 	}
+	return true;
 }
 
 bool Buffer::add_entry(con_strr first_name, con_strr last_name, const int& birth_year, const bool& status) {

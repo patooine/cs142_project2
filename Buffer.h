@@ -13,8 +13,8 @@ class Buffer
 public:
 	void load_data(con_strr file_name); //saves data from a file to the map
 	void save_data(con_strr file_name); //saves data from the map to a save file (no format)
-	void print_data(con_strr file_name, std::vector<Player*>& results); //saves the search data to a file
-	void print_data(con_strr file_name);
+	bool print_data(con_strr file_name, std::vector<Player*>& results); //saves the search data to a file
+	bool print_data(con_strr file_name);
 	bool add_entry(con_strr first_name, con_strr last_name, const int& birth_year, const bool& status); //adds an entry to the map
 	void test_cout(); //outputs the entire map to cout for testing
 	void statistics(int* stats); //fills the given array with the total paid for for each category, overall, and total players
